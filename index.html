@@ -70,31 +70,81 @@
   </section>
 
   <!-- Modal -->
-  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full shadow-xl relative">
-      <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
-      <h2 class="text-2xl font-bold mb-4">Запись на пробный урок</h2>
-      <form class="space-y-4">
-        <div>
-          <label class="block mb-1">ФИО Родителя</label>
-          <input type="text" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
+<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full shadow-xl relative">
+    <!-- Кнопка закрытия -->
+    <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+
+    <!-- Заголовок -->
+    <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Запись на занятие шахматного клуба</h2>
+
+    <!-- Форма -->
+    <form id="signupForm" method="POST" action="./feedback.php" class="space-y-4">
+      
+      <!-- ФИО Родителя -->
+      <div>
+        <label for="parentName" class="block mb-1 text-gray-700 dark:text-gray-300">ФИО Родителя</label>
+        <input type="text" id="parentName" name="parentName" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
+      </div>
+
+      <!-- ФИО Ребёнка -->
+      <div>
+        <label for="childName" class="block mb-1 text-gray-700 dark:text-gray-300">ФИО Ребёнка</label>
+        <input type="text" id="childName" name="childName" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
+      </div>
+
+      <!-- Телефон -->
+      <div>
+        <label for="phone" class="block mb-1 text-gray-700 dark:text-gray-300">Контактный телефон</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
+      </div>
+
+      <!-- Цель занятий -->
+      <div>
+        <label for="goal" class="block mb-1 text-gray-700 dark:text-gray-300">Цель занятий</label>
+        <textarea id="goal" name="goal" rows="3" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100"></textarea>
+      </div>
+
+      <!-- Уровень подготовки -->
+      <div>
+        <label for="level" class="block mb-1 text-gray-700 dark:text-gray-300">Уровень подготовки</label>
+        <select id="level" name="level" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
+          <option value="beginner">Начальный</option>
+          <option value="intermediate">Средний</option>
+          <option value="advanced">Продвинутый</option>
+        </select>
+      </div>
+
+      <!-- Город -->
+      <div>
+        <label for="city" class="block mb-1 text-gray-700 dark:text-gray-300">Город и район проживания</label>
+        <input type="text" id="city" name="city" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100">
+      </div>
+
+      <!-- Форма занятий -->
+      <div>
+        <label class="block mb-1 text-gray-700 dark:text-gray-300">Предпочтительная форма занятий</label>
+        <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+          <label class="flex items-center gap-2"><input type="radio" name="mode" value="offline"> Очно</label>
+          <label class="flex items-center gap-2"><input type="radio" name="mode" value="online"> Заочно</label>
         </div>
-        <div>
-          <label class="block mb-1">ФИО Ребёнка</label>
-          <input type="text" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
+      </div>
+
+      <!-- Формат занятий -->
+      <div>
+        <label class="block mb-1 text-gray-700 dark:text-gray-300">Формат занятий</label>
+        <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+          <label class="flex items-center gap-2"><input type="radio" name="groupType" value="group"> Групповые</label>
+          <label class="flex items-center gap-2"><input type="radio" name="groupType" value="individual"> Индивидуальные</label>
         </div>
-        <div>
-          <label class="block mb-1">Телефон</label>
-          <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
-        </div>
-        <div>
-          <label class="block mb-1">Цель занятий</label>
-          <textarea rows="3" class="w-full border rounded-lg p-2 dark:bg-gray-700"></textarea>
-        </div>
-        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Отправить</button>
-      </form>
-    </div>
+      </div>
+
+      <!-- Кнопка -->
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Отправить заявку</button>
+    </form>
   </div>
+</div>
+
 
 
   <!-- О клубе -->
