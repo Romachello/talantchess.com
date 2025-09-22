@@ -34,30 +34,32 @@
       </nav>
 
       <div class="flex items-center space-x-3">
-        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp" class="w-10 h-10 border rounded-full"></a>
-        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram" class="w-10 h-10 border rounded-full"></a>
+        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp" class="w-10 h-10 border rounded-full object-cover"></a>
+        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram" class="w-10 h-10 border rounded-full object-cover"></a>
         <!-- Переключатель темы -->
         <button id="themeToggle" class="ml-4 text-2xl">🌙</button>
       </div>
 
       <!-- Burger -->
-      <button id="burger" class="md:hidden flex flex-col space-y-1 ml-4">
+      <button id="burger" class="md:hidden flex flex-col space-y-1 ml-4 z-50">
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="menu" class="hidden flex-col md:hidden bg-[#00a82c] dark:bg-green-900 border-t">
-      <a href="./index.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Главная</a>
-      <a href="./o_nas.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">О нас</a>
-      <a href="./ours_club.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Наш Клуб</a>
-      <a href="./chess-calendar.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Календарь турниров</a>
-      <a href="./obuchaushie_kursi.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Курсы</a>
-      <button id="openModal2" class="bg-green-600 text-white px-4 py-2 m-4 rounded-lg">Записаться</button>
-    </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div id="menu" class="hidden fixed inset-0 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center z-40">
+    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-gray-700 dark:text-gray-300">&times;</button>
+    <a href="./index.html" class="py-3 text-xl hover:text-green-600">Главная</a>
+    <a href="./o_nas.html" class="py-3 text-xl hover:text-green-600">О нас</a>
+    <a href="./ours_club.html" class="py-3 text-xl hover:text-green-600">Наш Клуб</a>
+    <a href="./chess-calendar.html" class="py-3 text-xl hover:text-green-600">Календарь турниров</a>
+    <a href="./obuchaushie_kursi.html" class="py-3 text-xl hover:text-green-600">Курсы</a>
+    <button id="openModal2" class="bg-green-600 text-white px-6 py-3 mt-6 rounded-lg">Записаться</button>
+  </div>
+
 
   <!-- Hero -->
   <section class="text-center py-12 bg-gray-50 dark:bg-gray-800">
@@ -188,7 +190,7 @@
     </div>
   </section>
 
-  <section class="py-12 px-4 md:px-8 lg:px-16 bg-[#00a82c] dark:bg-green-900">
+  <section class="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-black">
   <h2 class="text-3xl font-semibold text-center text-white dark:text-gray-100 mb-8">♟ Достижения наших учеников ♟</h2>
 
   <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -395,26 +397,27 @@
   </footer>
 
   <script>
-    
     // Текущий год
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Меню бургер
-    document.getElementById('burger').addEventListener('click', () => {
-      document.getElementById('menu').classList.toggle('hidden');
-    });
+    const menu = document.getElementById('menu');
+    const burger = document.getElementById('burger');
+    const closeMenu = document.getElementById('closeMenu');
+    burger.addEventListener('click', () => menu.classList.remove('hidden'));
+    closeMenu.addEventListener('click', () => menu.classList.add('hidden'));
+    menu.addEventListener('click', e => { if(e.target === menu) menu.classList.add('hidden') });
 
-    // Модальное окно
+    // Модалка
     const modal = document.getElementById('modal');
     document.getElementById('openModal').addEventListener('click', () => modal.classList.remove('hidden'));
     document.getElementById('openModal2').addEventListener('click', () => modal.classList.remove('hidden'));
     document.getElementById('closeModal').addEventListener('click', () => modal.classList.add('hidden'));
     modal.addEventListener('click', e => { if(e.target === modal) modal.classList.add('hidden') });
 
-    // Тема (сохранение в localStorage)
+    // Тема
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-
     function setTheme(dark) {
       if (dark) {
         html.classList.add('dark');
@@ -426,12 +429,9 @@
         localStorage.setItem('theme', 'light');
       }
     }
-
     themeToggle.addEventListener('click', () => {
       setTheme(!html.classList.contains('dark'));
     });
-
-    // Загрузка темы из localStorage
     setTheme(localStorage.getItem('theme') === 'dark');
   </script>
 </body>
