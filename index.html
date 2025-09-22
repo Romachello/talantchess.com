@@ -49,16 +49,18 @@
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div id="menu" class="hidden fixed inset-0 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center z-40">
-    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-gray-700 dark:text-gray-300">&times;</button>
-    <a href="./index.html" class="py-3 text-xl hover:text-green-600">Главная</a>
-    <a href="./o_nas.html" class="py-3 text-xl hover:text-green-600">О нас</a>
-    <a href="./ours_club.html" class="py-3 text-xl hover:text-green-600">Наш Клуб</a>
-    <a href="./chess-calendar.html" class="py-3 text-xl hover:text-green-600">Календарь турниров</a>
-    <a href="./obuchaushie_kursi.html" class="py-3 text-xl hover:text-green-600">Курсы</a>
-    <button id="openModal2" class="bg-green-600 text-white px-6 py-3 mt-6 rounded-lg">Записаться</button>
-  </div>
+<!-- Mobile Menu -->
+<div id="menu" class="hidden fixed inset-0 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center z-40">
+  <!-- Кнопка закрытия -->
+  <button id="closeMenu" class="absolute top-6 right-6 text-4xl text-gray-700 dark:text-gray-300 hover:text-red-500">&times;</button>
+
+  <a href="./index.html" class="py-3 text-xl hover:text-green-600">Главная</a>
+  <a href="./o_nas.html" class="py-3 text-xl hover:text-green-600">О нас</a>
+  <a href="./ours_club.html" class="py-3 text-xl hover:text-green-600">Наш Клуб</a>
+  <a href="./chess-calendar.html" class="py-3 text-xl hover:text-green-600">Календарь турниров</a>
+  <a href="./obuchaushie_kursi.html" class="py-3 text-xl hover:text-green-600">Курсы</a>
+  <button id="openModal2" class="bg-green-600 text-white px-6 py-3 mt-6 rounded-lg">Записаться</button>
+</div>
 
 
   <!-- Hero -->
@@ -401,19 +403,46 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Меню бургер
-    const menu = document.getElementById('menu');
-    const burger = document.getElementById('burger');
-    const closeMenu = document.getElementById('closeMenu');
-    burger.addEventListener('click', () => menu.classList.remove('hidden'));
-    closeMenu.addEventListener('click', () => menu.classList.add('hidden'));
-    menu.addEventListener('click', e => { if(e.target === menu) menu.classList.add('hidden') });
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+const closeMenu = document.getElementById('closeMenu');
 
-    // Модалка
-    const modal = document.getElementById('modal');
-    document.getElementById('openModal').addEventListener('click', () => modal.classList.remove('hidden'));
-    document.getElementById('openModal2').addEventListener('click', () => modal.classList.remove('hidden'));
-    document.getElementById('closeModal').addEventListener('click', () => modal.classList.add('hidden'));
-    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.add('hidden') });
+burger.addEventListener('click', () => {
+  menu.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden'); // блокируем скролл
+});
+closeMenu.addEventListener('click', () => {
+  menu.classList.add('hidden');
+  document.body.classList.remove('overflow-hidden'); // возвращаем скролл
+});
+menu.addEventListener('click', e => { 
+  if (e.target === menu) {
+    menu.classList.add('hidden'); 
+    document.body.classList.remove('overflow-hidden');
+  }
+});
+
+// Модалка "Записаться"
+const modal = document.getElementById('modal');
+const openModal = document.getElementById('openModal');
+const openModal2 = document.getElementById('openModal2');
+const closeModal = document.getElementById('closeModal');
+
+function openSignupModal() {
+  modal.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden'); // блокируем прокрутку
+}
+
+function closeSignupModal() {
+  modal.classList.add('hidden');
+  document.body.classList.remove('overflow-hidden'); // возвращаем прокрутку
+}
+
+openModal.addEventListener('click', openSignupModal);
+openModal2.addEventListener('click', openSignupModal);
+closeModal.addEventListener('click', closeSignupModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeSignupModal(); });
+
 
     // Тема
     const themeToggle = document.getElementById('themeToggle');
