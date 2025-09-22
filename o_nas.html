@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru" class="antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>О шахматном клубе — "Талант"</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN (for quick prototype). For production, build with Tailwind CLI/PostCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind (optional tweaks)
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans:['Raleway', 'ui-sans-serif', 'system-ui'] }
+        }
+      }
+    }
+  </script>
+  <style> /* small helpers for modal backdrop blur in older browsers */
+    .backdrop-blur { backdrop-filter: blur(6px); }
+  </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+  <!-- Header -->
+  <header class="border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+      <div class="flex items-center gap-4">
+        <img src="./img/Logo (3).png" alt="Логотип" class="h-12 w-auto" />
+        <nav class="hidden md:flex gap-6 items-center">
+          <a href="./index.html" class="hover:underline">Главная</a>
+          <a href="./o_nas.html" aria-current="page" class="font-semibold">О нас</a>
+          <a href="./ours_club.html" class="hover:underline">Наш Клуб</a>
+          <a href="./chess-calendar.html" class="hover:underline">Календарь турниров</a>
+          <a href="./obuchaushie_kursi.html" class="hover:underline">Обучающие курсы</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2">
+          <a href="https://wa.me/+79117970740" class="p-1 rounded-md border dark:border-gray-700"><img src="./img/watssap.jpg" alt="wa" class="h-10 w-10 object-cover"/></a>
+          <a href="https://t.me/dmitrysharabaev" class="p-1 rounded-md border dark:border-gray-700"><img src="./img/tg.jpg" alt="tg" class="h-10 w-10 object-cover"/></a>
+        </div>
+
+        <!-- Theme toggle -->
+        <button id="themeToggle" aria-label="Переключить тему" class="p-2 rounded-md ring-offset-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M6.05 17.95l-1.414 1.414M17.95 17.95l1.414 1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+
+        <!-- Mobile burger -->
+        <button id="burger" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-100 dark:border-gray-800">
+      <div class="px-4 py-4 flex flex-col gap-2">
+        <a href="./index.html" class="py-2">Главная</a>
+        <a href="./o_nas.html" class="py-2 font-semibold">О нас</a>
+        <a href="./ours_club.html" class="py-2">Наш Клуб</a>
+        <a href="./chess-calendar.html" class="py-2">Календарь турниров</a>
+        <a href="./obuchaushie_kursi.html" class="py-2">Обучающие курсы</a>
+        <button id="openModalMobile" class="mt-2 px-3 py-2 bg-indigo-600 text-white rounded-md">Записаться на пробный урок</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / О нас -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="prose prose-lg dark:prose-invert max-w-none">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">О нас</h1>
+      <p class="text-xl font-semibold">Наш девиз — <em>Gens una sumus</em> («Мы – одна семья»)</p>
+
+      <p class="mt-6 text-lg leading-relaxed">Мы – команда шахматных друзей: тренеров, игроков, судей, организаторов и просто любителей вечной игры. Мы объединились для того, чтобы:</p>
+      <ul class="list-disc pl-6 mt-3 space-y-1">
+        <li>делиться своими знаниями, умениями, опытом с учениками</li>
+        <li>организовывать атмосферные турниры</li>
+        <li>проводить шахматные встречи (сеансы одновременной игры, мастер-классы, социально-значимые и корпоративные мероприятия)</li>
+      </ul>
+    </section>
+
+    <!-- Team -->
+    <section class="mt-12">
+      <h2 class="text-3xl font-bold text-center mb-6">Наша команда</h2>
+      <div id="teamGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Prices / Services -->
+    <section id="services" class="mt-12">
+      <h2 class="text-3xl font-bold mb-4">Стоимость занятий</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-200 dark:border-gray-700">
+          <thead class="bg-gray-50 dark:bg-gray-800">
+            <tr>
+              <th class="px-4 py-3 text-left"> </th>
+              <th class="px-4 py-3 text-left">Онлайн (Zoom)</th>
+              <th class="px-4 py-3 text-left">Очно (в студии)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="even:bg-white odd:bg-gray-50 dark:even:bg-gray-900 dark:odd:bg-gray-800">
+              <td class="px-4 py-3" data-label="Услуга">В группе 4-6 человек</td>
+              <td class="px-4 py-3" data-label="Онлайн">От 450 рублей</td>
+              <td class="px-4 py-3" data-label="Очно">От 600 рублей</td>
+            </tr>
+            <tr class="even:bg-white odd:bg-gray-50 dark:even:bg-gray-900 dark:odd:bg-gray-800">
+              <td class="px-4 py-3">Индивидуально</td>
+              <td class="px-4 py-3">От 1000 рублей</td>
+              <td class="px-4 py-3">От 1200 рублей</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <p class="text-center text-2xl font-medium">Мы помогаем раскрывать ваши таланты!</p>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
+        <div>
+          <h4 class="font-semibold mb-2">Связаться</h4>
+          <div class="flex justify-center sm:justify-start gap-3">
+            <a href="https://wa.me/+79117970740" class="inline-block p-1 rounded-md border dark:border-gray-700"><img src="./img/watssap.jpg" alt="wa" class="h-10 w-10 object-cover"/></a>
+            <a href="https://t.me/dmitrysharabaev" class="inline-block p-1 rounded-md border dark:border-gray-700"><img src="./img/tg.jpg" alt="tg" class="h-10 w-10 object-cover"/></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-2">Почта</h4>
+          <a href="mailto:dmitshar@mail.ru" class="block">dmitshar@mail.ru</a>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-2">Адрес клуба</h4>
+          <address class="not-italic">Санкт-Петербург, пр. Авиаконструкторов, д. 36, кв. 116.</address>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> "Талант". Все права защищены.</div>
+    </div>
+  </footer>
+
+  <!-- Modal (hidden) -->
+  <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur" aria-hidden></div>
+    <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-lg w-full mx-4 p-6">
+      <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">✕</button>
+      <h3 class="text-2xl font-semibold mb-4">Запись на занятие шахматного клуба</h3>
+      <form id="signupForm" class="space-y-3">
+        <div>
+          <label class="block text-sm">ФИО Родителя</label>
+          <input type="text" id="parentName" required class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+        </div>
+        <div>
+          <label class="block text-sm">ФИО Ребенка</label>
+          <input type="text" id="childName" required class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+        </div>
+        <div>
+          <label class="block text-sm">Контактный телефон</label>
+          <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__" class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+        </div>
+        <div>
+          <label class="block text-sm">Цель занятий</label>
+          <textarea id="goal" rows="3" class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800"></textarea>
+        </div>
+        <div class="flex gap-2">
+          <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Отправить заявку</button>
+          <button type="button" id="cancelModal" class="px-4 py-2 border rounded-md">Отмена</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Team data + scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (persist to localStorage)
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const preferred = localStorage.getItem('site-theme');
+    if (preferred === 'dark' || (!preferred && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      root.classList.add('dark');
+    }
+    function updateIcons() {
+      document.getElementById('icon-sun').style.display = root.classList.contains('dark') ? 'none' : 'block';
+      document.getElementById('icon-moon').style.display = root.classList.contains('dark') ? 'block' : 'none';
+    }
+    updateIcons();
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      const nowDark = root.classList.contains('dark');
+      localStorage.setItem('site-theme', nowDark ? 'dark' : 'light');
+      updateIcons();
+    });
+
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Modal open/close
+    const modal = document.getElementById('modal');
+    const openModalMobile = document.getElementById('openModalMobile');
+    const closeModal = document.getElementById('closeModal');
+    const cancelModal = document.getElementById('cancelModal');
+    if (openModalMobile) openModalMobile.addEventListener('click', () => modal.classList.remove('hidden'));
+    closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+    cancelModal.addEventListener('click', () => modal.classList.add('hidden'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+
+    // Signup
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Заявка отправлена!');
+      modal.classList.add('hidden');
+      signupForm.reset();
+    });
+
+    // Team members (ported from your old file)
+    const teamMembers = [
+      {
+        name: "Дмитрий Шарабаев",
+        photo: "./img/author4.jpg",
+        roles: ["Руководитель клуба","Тренер, опыт обучения 4 года","Организатор турниров","Судья соревнований"]
+      },
+      {
+        name: "Дмитрий Дмитриев",
+        photo: "./img/oDmitriy.jpg",
+        roles: ["Консультант клуба 'Талант'","Кандидат в мастера спорта","Тренер, опыт обучения 15 лет","Автор книги (2023)"]
+      },
+      {
+        name: "Константин Шмагин",
+        photo: "./img/constantine.jpg",
+        roles: ["Кандидат в мастера спорта","Тренер, опыт обучения 7 лет","Шахматный историк","Судья соревнований"]
+      }
+    ];
+
+    const grid = document.getElementById('teamGrid');
+    teamMembers.forEach(member => {
+      const card = document.createElement('article');
+      card.className = 'flex flex-col items-center text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm';
+      card.innerHTML = `
+        <img src="${member.photo}" alt="${member.name}" class="h-36 w-36 object-cover rounded-full mb-3" />
+        <h3 class="font-semibold">${member.name}</h3>
+        <p class="mt-2 text-sm leading-relaxed">${member.roles.join('<br/>')}</p>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

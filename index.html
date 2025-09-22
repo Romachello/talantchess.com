@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Шахматный клуб "Талант" — обучение детей и взрослых</title>
-  <meta name="description" content="Шахматный клуб «Талант» в Санкт-Петербурге. Обучение шахматам детей и взрослых: индивидуальные и групповые занятия, турниры, подготовка к соревнованиям.">
-  
+  <meta name="description"
+    content="Шахматный клуб «Талант» в Санкт-Петербурге. Обучение шахматам детей и взрослых: индивидуальные и групповые занятия, турниры, подготовка к соревнованиям.">
+
   <link rel="icon" href="./favicon/favicon.ico" type="image/x-icon">
-   <link rel="stylesheet" href="./dist/output.css">
+  <link rel="stylesheet" href="./dist/output.css">
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,6 +20,7 @@
     }
   </script>
 </head>
+
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
 
   <!-- Header -->
@@ -34,75 +37,385 @@
       </nav>
 
       <div class="flex items-center space-x-3">
-        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp" class="w-10 h-10 border rounded-full"></a>
-        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram" class="w-10 h-10 border rounded-full"></a>
+        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp"
+            class="w-10 h-10 border rounded-full object-cover"></a>
+        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram"
+            class="w-10 h-10 border rounded-full object-cover"></a>
         <!-- Переключатель темы -->
         <button id="themeToggle" class="ml-4 text-2xl">🌙</button>
       </div>
 
       <!-- Burger -->
-      <button id="burger" class="md:hidden flex flex-col space-y-1 ml-4">
+      <button id="burger" class="md:hidden flex flex-col space-y-1 ml-4 z-50">
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
         <span class="w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="menu" class="hidden flex-col md:hidden bg-white dark:bg-gray-800 border-t">
-      <a href="./index.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Главная</a>
-      <a href="./o_nas.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">О нас</a>
-      <a href="./ours_club.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Наш Клуб</a>
-      <a href="./chess-calendar.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Календарь турниров</a>
-      <a href="./obuchaushie_kursi.html" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Курсы</a>
-      <button id="openModal2" class="bg-green-600 text-white px-4 py-2 m-4 rounded-lg">Записаться</button>
-    </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div id="menu"
+    class="hidden fixed inset-0 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center z-40">
+    <!-- Кнопка закрытия -->
+    <button id="closeMenu"
+      class="absolute top-6 right-6 text-4xl text-gray-700 dark:text-gray-300 hover:text-red-500">&times;</button>
+
+    <a href="./index.html" class="py-3 text-xl hover:text-green-600">Главная</a>
+    <a href="./o_nas.html" class="py-3 text-xl hover:text-green-600">О нас</a>
+    <a href="./ours_club.html" class="py-3 text-xl hover:text-green-600">Наш Клуб</a>
+    <a href="./chess-calendar.html" class="py-3 text-xl hover:text-green-600">Календарь турниров</a>
+    <a href="./obuchaushie_kursi.html" class="py-3 text-xl hover:text-green-600">Курсы</a>
+    <button id="openModal2" class="bg-green-600 text-white px-6 py-3 mt-6 rounded-lg">Записаться</button>
+  </div>
+
 
   <!-- Hero -->
   <section class="text-center py-12 bg-gray-50 dark:bg-gray-800">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">Шахматный клуб "Талант"</h1>
     <h2 class="text-xl md:text-2xl text-gray-600 dark:text-gray-300">Обучение шахматам детей и взрослых</h2>
     <div class="mt-8 flex flex-col md:flex-row justify-center items-center gap-8">
-      <img src="./img/author2.jpg" alt="Автор клуба" class="w-64 rounded-xl shadow-lg">
-      <button id="openModal" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold">Записаться на пробный урок</button>
+      <img src="./img/author2.jpg" alt="Автор клуба" class="w-80 aspect-square object-cover rounded-xl shadow-lg">
+      <button id="openModal" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold">
+        Записаться на пробный урок
+      </button>
     </div>
   </section>
 
-  <!-- Modal -->
+
   <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full shadow-xl relative">
-      <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
-      <h2 class="text-2xl font-bold mb-4">Запись на пробный урок</h2>
-      <form class="space-y-4">
+    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full shadow-xl relative 
+              max-h-[90vh] overflow-y-auto">
+      <!-- Кнопка закрытия -->
+      <button id="closeModal"
+        class="sticky top-3 right-3 ml-auto block text-gray-500 hover:text-red-500 text-2xl z-10">&times;</button>
+
+      <!-- Заголовок -->
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Запись на занятие шахматного клуба</h2>
+
+      <!-- Форма -->
+      <form id="signupForm" method="POST" action="./feedback.php" class="space-y-4">
+
+        <!-- ФИО Родителя -->
         <div>
-          <label class="block mb-1">ФИО Родителя</label>
-          <input type="text" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
+          <label for="parentName" class="block mb-1 text-gray-700 dark:text-gray-300">ФИО Родителя</label>
+          <input type="text" id="parentName" name="parentName"
+            class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
         </div>
+
+        <!-- ФИО Ребёнка -->
         <div>
-          <label class="block mb-1">ФИО Ребёнка</label>
-          <input type="text" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
+          <label for="childName" class="block mb-1 text-gray-700 dark:text-gray-300">ФИО Ребёнка</label>
+          <input type="text" id="childName" name="childName"
+            class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
         </div>
+
+        <!-- Телефон -->
         <div>
-          <label class="block mb-1">Телефон</label>
-          <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full border rounded-lg p-2 dark:bg-gray-700" required>
+          <label for="phone" class="block mb-1 text-gray-700 dark:text-gray-300">Контактный телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__"
+            class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100" required>
         </div>
+
+        <!-- Цель занятий -->
         <div>
-          <label class="block mb-1">Цель занятий</label>
-          <textarea rows="3" class="w-full border rounded-lg p-2 dark:bg-gray-700"></textarea>
+          <label for="goal" class="block mb-1 text-gray-700 dark:text-gray-300">Цель занятий</label>
+          <textarea id="goal" name="goal" rows="3"
+            class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100"></textarea>
         </div>
-        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Отправить</button>
+
+        <!-- Уровень подготовки -->
+        <div>
+          <label for="level" class="block mb-1 text-gray-700 dark:text-gray-300">Уровень подготовки</label>
+          <select id="level" name="level" class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100"
+            required>
+            <option value="beginner">Начальный</option>
+            <option value="intermediate">Средний</option>
+            <option value="advanced">Продвинутый</option>
+          </select>
+        </div>
+
+        <!-- Город -->
+        <div>
+          <label for="city" class="block mb-1 text-gray-700 dark:text-gray-300">Город и район проживания</label>
+          <input type="text" id="city" name="city"
+            class="w-full border rounded-lg p-2 dark:bg-gray-700 dark:text-gray-100">
+        </div>
+
+        <!-- Форма занятий -->
+        <div>
+          <label class="block mb-1 text-gray-700 dark:text-gray-300">Предпочтительная форма занятий</label>
+          <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+            <label class="flex items-center gap-2"><input type="radio" name="mode" value="offline"> Очно</label>
+            <label class="flex items-center gap-2"><input type="radio" name="mode" value="online"> Заочно</label>
+          </div>
+        </div>
+
+        <!-- Формат занятий -->
+        <div>
+          <label class="block mb-1 text-gray-700 dark:text-gray-300">Формат занятий</label>
+          <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+            <label class="flex items-center gap-2"><input type="radio" name="groupType" value="group"> Групповые</label>
+            <label class="flex items-center gap-2"><input type="radio" name="groupType" value="individual">
+              Индивидуальные</label>
+          </div>
+        </div>
+
+        <!-- Кнопка -->
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Отправить
+          заявку</button>
       </form>
     </div>
   </div>
+
+
+  <!-- О клубе -->
+  <section id="about" class="py-16">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-bold mb-8 text-center">Почему выбирают нас</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h4 class="font-semibold mb-2">Опытные тренеры</h4>
+          <p>Наши тренеры – мастера и кандидаты в мастера, готовые обучить как новичков, так и опытных игроков.</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h4 class="font-semibold mb-2">Современные методики</h4>
+          <p>Мы используем проверенные методики обучения, чтобы развивать мышление, тактику и стратегию.</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h4 class="font-semibold mb-2">Дружная атмосфера</h4>
+          <p>В нашем клубе всегда приветствуется общение, турниры и дружеские партии для всех уровней.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Достижения -->
+  <section id="achievements" class="bg-blue-50 dark:bg-gray-900 py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-8">Наши достижения</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="text-2xl font-bold mb-2">50+</h4>
+          <p>Побед на региональных турнирах</p>
+        </div>
+        <div>
+          <h4 class="text-2xl font-bold mb-2">200+</h4>
+          <p>Занятия проведено за год</p>
+        </div>
+        <div>
+          <h4 class="text-2xl font-bold mb-2">100+</h4>
+          <p>Участников клуба разных возрастов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-black">
+    <h2 class="text-3xl font-semibold text-center text-white dark:text-gray-100 mb-8">♟ Достижения наших учеников ♟</h2>
+
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Карточка 1 -->
+      <div
+        class="flex flex-col items-center bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mt-4">Молчанов Дмитрий</h2>
+        <img class="w-full h-64 object-cover mt-2" src="./img/students/молчанов дима.jpg" alt="Молчанов Дмитрий">
+        <p class="text-gray-700 dark:text-gray-300 text-sm p-6">
+          2016 год рождения<br>
+          - 2 юношеский разряд<br>
+          - 1 место среди участников 2016 года рождения (9 из 81 в общем зачете) Регионального фестиваля «Белые ночи»
+          2024, Турнир «А»<br>
+          - призер «первенства Школы Шахмат Анатолия Боталова до 1200 рейтинга ФШР» (дележ 1-3 места)<br>
+          - чемпион Выборгского района в возрастной категории 2015 года рождения и младше<br>
+          - актуальный рейтинг ФШР рапид 1229
+        </p>
+      </div>
+
+      <!-- Карточка 2 -->
+      <div
+        class="flex flex-col items-center bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mt-4">Лёвин Кирилл</h2>
+        <img class="w-full h-64 object-cover mt-2" src="./img/students/levin kirill.jpg" alt="Лёвин Кирилл">
+        <p class="text-gray-700 dark:text-gray-300 text-sm p-6">
+          2014 год рождения<br>
+          - 1 юношеский разряд<br>
+          - чемпион «Чессть Мега Парнас до 1200 рейтинга ФШР»<br>
+          - серебряный призер первенства Выборгского района до 1400 рейтинга ФШР<br>
+          - актуальный рейтинг ФШР рапид 1360, онлайн-рейтинг 1536
+        </p>
+      </div>
+
+      <!-- Карточка 3 -->
+      <div
+        class="flex flex-col items-center bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mt-4">Клементьев Сергей</h2>
+        <img class="w-full h-64 object-cover mt-2" src="./img/students/клементьев сергей.jpg" alt="Клементьев Сергей">
+        <p class="text-gray-700 dark:text-gray-300 text-sm p-6">
+          2011 год рождения<br>
+          - 1 юношеский разряд<br>
+          - чемпион турнира «IQ Cup», ноябрь 2024<br>
+          - многократный призер первенств Выборгского района<br>
+          - дележ 3-6 места Регионального фестиваля «Белые ночи» 2025, турнир «В» классика<br>
+          - актуальный рейтинг ФШР рапид 1337, классика 1307
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900">
+    <h2 class="text-3xl font-semibold text-center text-gray-900 dark:text-gray-100 mb-8">Отзывы об обучении</h2>
+
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Карточка 1 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">С осени очень продвинулись в понимании шахмат,
+          выезжали уже на городской турнир, участвуют в онлайн-турнирах. После каждого занятия делятся успехами.
+          Благодарю педагога Дмитрия Владимировича за чуткий подход, развитие и поддержание интереса к этому виду
+          спорта!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Мария Артамонова</p>
+      </div>
+
+      <!-- Карточка 2 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Очень нравятся ходить на шахматы к Дмитрию
+          Владимировичу Шарабаеву. Когда сын (7 лет) пришел на занятия, знал только названия фигур и как они ходят.
+          Через 2,5 месяца уже разыгрывает комбинации, которые на занятиях проходят и, бывает, обыгрывает старшего
+          брата, притом, что брат очень неплохо играет. И на занятия ходит с удовольствием!!!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Чегодаева М.*</p>
+      </div>
+
+      <!-- Карточка 3 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Сын занимается в шахматном клубе у Дмитрия
+          Владимировича. Ребёнок всегда с удовольствием посещает занятия и проявляет к шахматам неподдельный интерес,
+          что, несомненно, является заслугой тренера. Отдельное спасибо Дмитрию Владимировичу за организацию
+          онлайн-турниров по воскресеньям!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Лёвин Алексей</p>
+      </div>
+
+      <!-- Карточка 4 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">В этом году ребёнок начал ходить на шахматы к
+          Дмитрию Владимировичу. Посещает занятия с большим удовольствием, очень нравиться!! Спасибо огромное педагогу
+          за интересные занятия и отношение к детям!!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Гутникова Светлана</p>
+      </div>
+
+      <!-- Карточка 5 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Мои мальчишки ходят с удовольствием на шахматы,
+          ждут с нетерпением каждый турнир и очень грустят, когда по болезни не могут присутствовать. Каждый вечер
+          играют друг с другом и рассказывают мне про какие-то итальянские партии и детские маты. Спасибо огромное!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Лейла М.</p>
+      </div>
+
+      <!-- Карточка 6 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Сын уже второй год занимается в шахматном клубе у
+          Дмитрия Владимировича. Ребёнок очень увлечён игрой и всегда с удовольствием посещает занятия, в чем,
+          несомненно, заслуга преподавателя. Большая благодарность Дмитрию Владимировичу за работу, турниры и наши
+          достижения.</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Комарова Юлия</p>
+      </div>
+
+      <!-- Карточка 7 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Занимаемся шахматами под руководством тренера
+          Дмитрия Владимировича Шарабаева. Отличная подготовка: разбор задач и техник на очных занятиях + еженедельные
+          онлайн турниры + дз с задачами + участие в очных турнирах. Ребенку очень нравятся занятия и мастерство его
+          растет. Спасибо тренеру!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Светлана К.</p>
+      </div>
+
+      <!-- Карточка 8 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Занимаемся у Дмитрия Владимировича, ребенок ходит
+          на занятия с большим удовольствием! Тренер всегда на связи, всегда похвалит за успехи и поможет, если надо
+          где-то подтянуть знания.</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Катаева Анастасия</p>
+      </div>
+
+      <!-- Карточка 9 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Ребенок проявляет очень сильный интерес к игре,
+          практически не пропускает ни одно занятие. Тренер постоянно даёт различные задания по шахматам на
+          онлайн-платформах, а также отдельно проводит онлайн-турниры среди учеников своих групп. Ребенок уже участвовал
+          в своем первом офлайн-турнире среди начинающих, где занял второе место.</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Крылова Анна</p>
+      </div>
+
+      <!-- Карточка 10 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Ребенок ходит на занятиях с удовольствием, ждёт
+          занятий, тренер максимально включен в развитие своих подопечных. У ребенка есть прогресс в этом виде спорта!
+          Однозначно рекомендую!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Ольга К.</p>
+      </div>
+
+      <!-- Карточка 11 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Дочка занимается с сентября в шахматном клубе у
+          Дмитрия Владимировича. Ей очень нравится, теорию всю применяет дома на практике, стала уверенной в себе и
+          устойчивой к неудачам. Воскресные онлайн-турниры помогают сконцентрироваться в стрессовой ситуации дефицита
+          времени. Благодарим нашего тренера!</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Юлия</p>
+      </div>
+
+      <!-- Карточка 12 -->
+      <div
+        class="review-card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="review-text text-gray-800 dark:text-gray-200 mb-4">Занимается сын шахматами с сентября 2024 года.
+          Тренер - Дмитрий Владимирович Шарабаев. Сын в шахматах самоучка, благодаря тренеру, после 2х месяцев занятий
+          наша победа в турнире - 1 место.</p>
+        <p class="review-author text-gray-600 dark:text-gray-400 font-semibold">Васильева Людмила</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="bg-blue-50 dark:bg-gray-900 py-16">
+    <div class="container mx-auto px-4 max-w-xl">
+      <h3 class="text-3xl font-bold mb-8 text-center">Свяжитесь с нами</h3>
+      <form class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow space-y-4">
+        <input type="text" placeholder="Ваше имя"
+          class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+        <input type="email" placeholder="Email"
+          class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+        <textarea placeholder="Сообщение"
+          class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"></textarea>
+        <button type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-12 mt-12">
     <div class="container mx-auto text-center">
       <p class="text-2xl font-semibold mb-6">Мы помогаем раскрывать ваши таланты!</p>
       <div class="flex justify-center space-x-6 mb-6">
-        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp" class="w-10 h-10 rounded-full border"></a>
-        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram" class="w-10 h-10 rounded-full border"></a>
+        <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg" alt="WhatsApp"
+            class="w-10 h-10 rounded-full border"></a>
+        <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg" alt="Telegram"
+            class="w-10 h-10 rounded-full border"></a>
       </div>
       <p class="mb-2">Почта: <a href="mailto:dmitshar@mail.ru" class="text-green-400">dmitshar@mail.ru</a></p>
       <p class="mb-6">Адрес: Санкт-Петербург, пр. Авиаконструкторов, д. 36, кв. 116</p>
@@ -115,21 +428,50 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Меню бургер
-    document.getElementById('burger').addEventListener('click', () => {
-      document.getElementById('menu').classList.toggle('hidden');
+    const menu = document.getElementById('menu');
+    const burger = document.getElementById('burger');
+    const closeMenu = document.getElementById('closeMenu');
+
+    burger.addEventListener('click', () => {
+      menu.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden'); // блокируем скролл
+    });
+    closeMenu.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden'); // возвращаем скролл
+    });
+    menu.addEventListener('click', e => {
+      if (e.target === menu) {
+        menu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
     });
 
-    // Модальное окно
+    // Модалка "Записаться"
     const modal = document.getElementById('modal');
-    document.getElementById('openModal').addEventListener('click', () => modal.classList.remove('hidden'));
-    document.getElementById('openModal2').addEventListener('click', () => modal.classList.remove('hidden'));
-    document.getElementById('closeModal').addEventListener('click', () => modal.classList.add('hidden'));
-    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.add('hidden') });
+    const openModal = document.getElementById('openModal');
+    const openModal2 = document.getElementById('openModal2');
+    const closeModal = document.getElementById('closeModal');
 
-    // Тема (сохранение в localStorage)
+    function openSignupModal() {
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden'); // блокируем прокрутку
+    }
+
+    function closeSignupModal() {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden'); // возвращаем прокрутку
+    }
+
+    openModal.addEventListener('click', openSignupModal);
+    openModal2.addEventListener('click', openSignupModal);
+    closeModal.addEventListener('click', closeSignupModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeSignupModal(); });
+
+
+    // Тема
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-
     function setTheme(dark) {
       if (dark) {
         html.classList.add('dark');
@@ -141,13 +483,11 @@
         localStorage.setItem('theme', 'light');
       }
     }
-
     themeToggle.addEventListener('click', () => {
       setTheme(!html.classList.contains('dark'));
     });
-
-    // Загрузка темы из localStorage
     setTheme(localStorage.getItem('theme') === 'dark');
   </script>
 </body>
+
 </html>
