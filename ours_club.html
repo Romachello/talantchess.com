@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Турниры школы</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+      tailwind.config = { darkMode: 'class' }
+   </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+
+   <!-- HEADER -->
+   <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
+      <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+         <!-- Логотип + Десктоп меню -->
+         <div class="flex items-center space-x-4">
+            <img src="./img/Logo (3).png" alt="Логотип" class="h-12 w-auto">
+            <nav class="hidden md:flex space-x-6">
+               <a href="./index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Главная</a>
+               <a href="./o_nas.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">О нас</a>
+               <a href="./ours_club.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Наш Клуб</a>
+               <a href="./chess-calendar.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Календарь</a>
+               <a href="./obuchaushie_kursi.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Курсы</a>
+            </nav>
+         </div>
+
+         <!-- Соцсети + темы + бургер -->
+         <div class="flex items-center space-x-3">
+            <div class="hidden sm:flex items-center gap-2">
+               <a href="https://wa.me/+79117970740" class="p-1 rounded-md border dark:border-gray-700">
+                  <img src="./img/watssap.jpg" alt="WhatsApp" class="h-10 w-10 object-cover" />
+               </a>
+               <a href="https://t.me/dmitrysharabaev" class="p-1 rounded-md border dark:border-gray-700">
+                  <img src="./img/tg.jpg" alt="Telegram" class="h-10 w-10 object-cover" />
+               </a>
+            </div>
+
+            <!-- Theme toggle -->
+            <button id="themeToggle" aria-label="Переключить тему"
+               class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+               <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M6.05 17.95l-1.414 1.414M17.95 17.95l1.414 1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z" />
+               </svg>
+               <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+               </svg>
+            </button>
+
+            <!-- Mobile burger -->
+            <button id="burger" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+               </svg>
+            </button>
+         </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden border-t border-gray-100 dark:border-gray-800">
+         <div class="px-4 py-4 flex flex-col gap-2">
+            <a href="./index.html" class="py-2">Главная</a>
+            <a href="./o_nas.html" class="py-2 font-semibold">О нас</a>
+            <a href="./ours_club.html" class="py-2">Наш Клуб</a>
+            <a href="./chess-calendar.html" class="py-2">Календарь турниров</a>
+            <a href="./obuchaushie_kursi.html" class="py-2">Обучающие курсы</a>
+            <button id="openModalMobile" class="mt-2 px-3 py-2 bg-indigo-600 text-white rounded-md">Записаться на
+               пробный урок</button>
+         </div>
+      </div>
+   </header>
+
+   <!-- MODAL -->
+   <div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+         <button id="closeModal"
+            class="absolute top-3 right-3 text-gray-500 dark:text-gray-300 hover:text-red-500">✕</button>
+         <h2 class="text-2xl font-bold mb-4">Запись на занятие шахматного клуба</h2>
+         <form id="signupForm" class="space-y-3">
+            <input type="text" placeholder="ФИО Родителя" required
+               class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100">
+            <input type="text" placeholder="ФИО Ребенка" required
+               class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100">
+            <input type="tel" placeholder="+7 (___) ___-__-__" required
+               class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100">
+            <textarea placeholder="Цель занятий" rows="3"
+               class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100"></textarea>
+            <select class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100">
+               <option>Начальный</option>
+               <option>Средний</option>
+               <option>Продвинутый</option>
+            </select>
+            <input type="text" placeholder="Город и район проживания"
+               class="w-full border rounded p-2 dark:bg-gray-700 dark:text-gray-100">
+            <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+               <label><input type="radio" name="mode"> Очно</label>
+               <label><input type="radio" name="mode"> Заочно</label>
+            </div>
+            <div class="flex gap-4 text-gray-700 dark:text-gray-300">
+               <label><input type="radio" name="groupType"> Групповые</label>
+               <label><input type="radio" name="groupType"> Индивидуальные</label>
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">Отправить
+               заявку</button>
+         </form>
+      </div>
+   </div>
+
+   <!-- TOURNAMENTS -->
+   <section class="max-w-7xl mx-auto px-4 py-12">
+      <h1 class="text-3xl font-bold text-center mb-2">Шахматные турниры клуба</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 mb-8">для детей и взрослых</p>
+      <div id="chess-cards" class="grid md:grid-cols-3 gap-6"></div>
+      <nav id="chess-pager" class="flex justify-center space-x-2 mt-8"></nav>
+   </section>
+
+   <!-- REVIEWS -->
+   <section class="bg-gray-100 dark:bg-gray-800 py-12">
+      <div class="max-w-5xl mx-auto px-4">
+         <h2 class="text-2xl font-bold text-center mb-8">Отзывы родителей</h2>
+         <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+               <img src="https://i.pravatar.cc/80?img=8" class="h-12 w-12 rounded-full">
+               <div>
+                  <p class="font-semibold">Андрей Петров <span class="text-sm text-gray-500">14.08.2025</span></p>
+                  <p>Отличный турнир! Особенно понравилась партия Иванова и Смирнова.</p>
+               </div>
+            </div>
+            <div class="flex items-start space-x-4">
+               <img src="https://i.pravatar.cc/80?img=5" class="h-12 w-12 rounded-full">
+               <div>
+                  <p class="font-semibold">Мария Коваль <span class="text-sm text-gray-500">13.08.2025</span></p>
+                  <p>Спасибо организаторам! Атмосфера дружелюбная, блиц на воздухе супер.</p>
+               </div>
+            </div>
+            <div class="flex items-start space-x-4">
+               <img src="https://i.pravatar.cc/80?img=12" class="h-12 w-12 rounded-full">
+               <div>
+                  <p class="font-semibold">Сергей Иванов <span class="text-sm text-gray-500">12.08.2025</span></p>
+                  <p>Хотелось бы побольше мастер-классов для новичков. В остальном всё отлично!</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- FOOTER -->
+   <footer class="bg-gray-800 text-gray-300 py-8">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6 px-4">
+         <div>
+            <h4 class="font-bold mb-2">Связаться</h4>
+            <a href="https://wa.me/+79117970740"><img src="./img/watssap.jpg"
+                  class="h-10 w-10 inline-block mr-2 border rounded"></a>
+            <a href="https://t.me/dmitrysharabaev"><img src="./img/tg.jpg"
+                  class="h-10 w-10 inline-block border rounded"></a>
+         </div>
+         <div>
+            <h4 class="font-bold mb-2">Почта</h4>
+            <p>dmitshar@mail.ru</p>
+         </div>
+         <div>
+            <h4 class="font-bold mb-2">Адрес клуба</h4>
+            <p>Санкт-Петербург, пр. Авиаконструкторов, д. 36, кв. 116</p>
+         </div>
+      </div>
+      <p class="text-center mt-6 text-sm">© <span id="year"></span> "Талант". Все права защищены.</p>
+   </footer>
+
+   <script>
+      // --- ТУРНИРЫ ---
+      const chessTournaments = [
+         { title: "Турнир 1", date: "01.09.2025", place: "Москва", level: "Новички" },
+         { title: "Турнир 2", date: "05.09.2025", place: "Онлайн", level: "Средний" },
+         { title: "Турнир 3", date: "10.09.2025", place: "Санкт-Петербург", level: "Профи" },
+         { title: "Турнир 4", date: "15.09.2025", place: "Онлайн", level: "Новички" },
+         { title: "Турнир 5", date: "20.09.2025", place: "Казань", level: "Средний" },
+         { title: "Турнир 6", date: "25.09.2025", place: "Онлайн", level: "Профи" },
+         { title: "Турнир 7", date: "30.09.2025", place: "Новосибирск", level: "Профи" },
+         { title: "Турнир 8", date: "05.10.2025", place: "Онлайн", level: "Новички" },
+         { title: "Турнир 9", date: "12.10.2025", place: "Екатеринбург", level: "Средний" },
+         { title: "Турнир 10", date: "18.10.2025", place: "Онлайн", level: "Профи" },
+         { title: "Турнир 11", date: "22.10.2025", place: "Нижний Новгород", level: "Новички" },
+         { title: "Турнир 12", date: "29.10.2025", place: "Онлайн", level: "Средний" }
+      ];
+      const perPage = 3;
+      const cardsEl = document.getElementById("chess-cards");
+      const pagerEl = document.getElementById("chess-pager");
+      const totalPages = Math.ceil(chessTournaments.length / perPage);
+      let page = 1;
+
+      function renderCards(p) {
+         const start = (p - 1) * perPage;
+         const slice = chessTournaments.slice(start, start + perPage);
+         cardsEl.innerHTML = slice.map(t => `
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-bold mb-2">${t.title}</h3>
+          <p class="text-gray-600 dark:text-gray-400">📅 ${t.date}</p>
+          <p class="text-gray-600 dark:text-gray-400">📍 ${t.place}</p>
+          <p class="text-gray-600 dark:text-gray-400">🏆 ${t.level}</p>
+          <a href="#" class="mt-3 inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+            Подробнее
+          </a>
+        </div>
+      `).join("");
+      }
+
+      function renderPager(p) {
+         let html = "";
+         for (let i = 1; i <= totalPages; i++) {
+            html += `
+          <button data-go="${i}" class="px-3 py-1 rounded ${i === p ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'}">
+            ${i}
+          </button>
+        `;
+         }
+         pagerEl.innerHTML = html;
+      }
+
+      function go(to) {
+         page = Math.min(Math.max(1, to), totalPages);
+         renderCards(page);
+         renderPager(page);
+      }
+
+      pagerEl.addEventListener("click", e => {
+         const el = e.target.closest("[data-go]");
+         if (!el) return;
+         go(parseInt(el.dataset.go, 10));
+      });
+
+      go(1);
+
+      // --- Бургер ---
+      const burger = document.getElementById("burger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      burger.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+
+      // --- Модалка ---
+      const modal = document.getElementById("modal");
+      const openModalMobile = document.getElementById("openModalMobile");
+      const closeModal = document.getElementById("closeModal");
+      openModalMobile.addEventListener("click", () => modal.classList.remove("hidden"));
+      closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+      document.getElementById("signupForm").addEventListener("submit", e => {
+         e.preventDefault();
+         alert("Заявка отправлена!");
+         modal.classList.add("hidden");
+      });
+
+      // --- Темная тема ---
+      const themeToggle = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+      if (localStorage.getItem('site-theme') === 'dark' || (!localStorage.getItem('site-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+         root.classList.add('dark');
+      }
+      function updateIcons() {
+         iconSun.style.display = root.classList.contains('dark') ? 'none' : 'block';
+         iconMoon.style.display = root.classList.contains('dark') ? 'block' : 'none';
+      }
+      updateIcons();
+      themeToggle.addEventListener('click', () => {
+         root.classList.toggle('dark');
+         localStorage.setItem('site-theme', root.classList.contains('dark') ? 'dark' : 'light');
+         updateIcons();
+      });
+
+      // --- Год в футере ---
+      document.getElementById("year").textContent = new Date().getFullYear();
+   </script>
+</body>
+
+</html>

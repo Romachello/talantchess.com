@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="ru" class="antialiased">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>О шахматном клубе — "Талант"</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
   <!-- Tailwind CDN (for quick prototype). For production, build with Tailwind CLI/PostCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,45 +15,67 @@
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: { sans:['Raleway', 'ui-sans-serif', 'system-ui'] }
+          fontFamily: { sans: ['Raleway', 'ui-sans-serif', 'system-ui'] }
         }
       }
     }
   </script>
-  <style> /* small helpers for modal backdrop blur in older browsers */
-    .backdrop-blur { backdrop-filter: blur(6px); }
+  <style>
+    /* small helpers for modal backdrop blur in older browsers */
+    .backdrop-blur {
+      backdrop-filter: blur(6px);
+    }
   </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
-  <!-- Header -->
-  <header class="border-b border-gray-200 dark:border-gray-700">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-      <div class="flex items-center gap-4">
-        <img src="./img/Logo (3).png" alt="Логотип" class="h-12 w-auto" />
-        <nav class="hidden md:flex gap-6 items-center">
-          <a href="./index.html" class="hover:underline">Главная</a>
-          <a href="./o_nas.html" aria-current="page" class="font-semibold">О нас</a>
-          <a href="./ours_club.html" class="hover:underline">Наш Клуб</a>
-          <a href="./chess-calendar.html" class="hover:underline">Календарь турниров</a>
-          <a href="./obuchaushie_kursi.html" class="hover:underline">Обучающие курсы</a>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+
+  <!-- HEADER -->
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <!-- Логотип + Десктоп меню -->
+      <div class="flex items-center space-x-4">
+        <img src="./img/Logo (3).png" alt="Логотип" class="h-12 w-auto">
+        <nav class="hidden md:flex space-x-6">
+          <a href="./index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Главная</a>
+          <a href="./o_nas.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">О нас</a>
+          <a href="./ours_club.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Наш Клуб</a>
+          <a href="./chess-calendar.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Календарь</a>
+          <a href="./obuchaushie_kursi.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Курсы</a>
         </nav>
       </div>
 
-      <div class="flex items-center gap-3">
+      <!-- Соцсети + темы + бургер -->
+      <div class="flex items-center space-x-3">
         <div class="hidden sm:flex items-center gap-2">
-          <a href="https://wa.me/+79117970740" class="p-1 rounded-md border dark:border-gray-700"><img src="./img/watssap.jpg" alt="wa" class="h-10 w-10 object-cover"/></a>
-          <a href="https://t.me/dmitrysharabaev" class="p-1 rounded-md border dark:border-gray-700"><img src="./img/tg.jpg" alt="tg" class="h-10 w-10 object-cover"/></a>
+          <a href="https://wa.me/+79117970740" class="p-1 rounded-md border dark:border-gray-700">
+            <img src="./img/watssap.jpg" alt="WhatsApp" class="h-10 w-10 object-cover" />
+          </a>
+          <a href="https://t.me/dmitrysharabaev" class="p-1 rounded-md border dark:border-gray-700">
+            <img src="./img/tg.jpg" alt="Telegram" class="h-10 w-10 object-cover" />
+          </a>
         </div>
 
         <!-- Theme toggle -->
-        <button id="themeToggle" aria-label="Переключить тему" class="p-2 rounded-md ring-offset-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M6.05 17.95l-1.414 1.414M17.95 17.95l1.414 1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <button id="themeToggle" aria-label="Переключить тему"
+          class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M6.05 17.95l-1.414 1.414M17.95 17.95l1.414 1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
         </button>
 
         <!-- Mobile burger -->
         <button id="burger" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
     </div>
@@ -64,7 +88,8 @@
         <a href="./ours_club.html" class="py-2">Наш Клуб</a>
         <a href="./chess-calendar.html" class="py-2">Календарь турниров</a>
         <a href="./obuchaushie_kursi.html" class="py-2">Обучающие курсы</a>
-        <button id="openModalMobile" class="mt-2 px-3 py-2 bg-indigo-600 text-white rounded-md">Записаться на пробный урок</button>
+        <button id="openModalMobile" class="mt-2 px-3 py-2 bg-indigo-600 text-white rounded-md">Записаться на пробный
+          урок</button>
       </div>
     </div>
   </header>
@@ -75,11 +100,13 @@
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">О нас</h1>
       <p class="text-xl font-semibold">Наш девиз — <em>Gens una sumus</em> («Мы – одна семья»)</p>
 
-      <p class="mt-6 text-lg leading-relaxed">Мы – команда шахматных друзей: тренеров, игроков, судей, организаторов и просто любителей вечной игры. Мы объединились для того, чтобы:</p>
+      <p class="mt-6 text-lg leading-relaxed">Мы – команда шахматных друзей: тренеров, игроков, судей, организаторов и
+        просто любителей вечной игры. Мы объединились для того, чтобы:</p>
       <ul class="list-disc pl-6 mt-3 space-y-1">
         <li>делиться своими знаниями, умениями, опытом с учениками</li>
         <li>организовывать атмосферные турниры</li>
-        <li>проводить шахматные встречи (сеансы одновременной игры, мастер-классы, социально-значимые и корпоративные мероприятия)</li>
+        <li>проводить шахматные встречи (сеансы одновременной игры, мастер-классы, социально-значимые и корпоративные
+          мероприятия)</li>
       </ul>
     </section>
 
@@ -127,8 +154,10 @@
         <div>
           <h4 class="font-semibold mb-2">Связаться</h4>
           <div class="flex justify-center sm:justify-start gap-3">
-            <a href="https://wa.me/+79117970740" class="inline-block p-1 rounded-md border dark:border-gray-700"><img src="./img/watssap.jpg" alt="wa" class="h-10 w-10 object-cover"/></a>
-            <a href="https://t.me/dmitrysharabaev" class="inline-block p-1 rounded-md border dark:border-gray-700"><img src="./img/tg.jpg" alt="tg" class="h-10 w-10 object-cover"/></a>
+            <a href="https://wa.me/+79117970740" class="inline-block p-1 rounded-md border dark:border-gray-700"><img
+                src="./img/watssap.jpg" alt="wa" class="h-10 w-10 object-cover" /></a>
+            <a href="https://t.me/dmitrysharabaev" class="inline-block p-1 rounded-md border dark:border-gray-700"><img
+                src="./img/tg.jpg" alt="tg" class="h-10 w-10 object-cover" /></a>
           </div>
         </div>
 
@@ -143,7 +172,8 @@
         </div>
       </div>
 
-      <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> "Талант". Все права защищены.</div>
+      <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> "Талант". Все
+        права защищены.</div>
     </div>
   </footer>
 
@@ -151,24 +181,29 @@
   <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center">
     <div class="absolute inset-0 bg-black/50 backdrop-blur" aria-hidden></div>
     <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-lg w-full mx-4 p-6">
-      <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">✕</button>
+      <button id="closeModal"
+        class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">✕</button>
       <h3 class="text-2xl font-semibold mb-4">Запись на занятие шахматного клуба</h3>
       <form id="signupForm" class="space-y-3">
         <div>
           <label class="block text-sm">ФИО Родителя</label>
-          <input type="text" id="parentName" required class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+          <input type="text" id="parentName" required
+            class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
         </div>
         <div>
           <label class="block text-sm">ФИО Ребенка</label>
-          <input type="text" id="childName" required class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+          <input type="text" id="childName" required
+            class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
         </div>
         <div>
           <label class="block text-sm">Контактный телефон</label>
-          <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__" class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
+          <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__"
+            class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800" />
         </div>
         <div>
           <label class="block text-sm">Цель занятий</label>
-          <textarea id="goal" rows="3" class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800"></textarea>
+          <textarea id="goal" rows="3"
+            class="mt-1 block w-full rounded-md border px-3 py-2 bg-white dark:bg-gray-800"></textarea>
         </div>
         <div class="flex gap-2">
           <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Отправить заявку</button>
@@ -230,17 +265,17 @@
       {
         name: "Дмитрий Шарабаев",
         photo: "./img/author4.jpg",
-        roles: ["Руководитель клуба","Тренер, опыт обучения 4 года","Организатор турниров","Судья соревнований"]
+        roles: ["Руководитель клуба", "Тренер, опыт обучения 4 года", "Организатор турниров", "Судья соревнований"]
       },
       {
         name: "Дмитрий Дмитриев",
         photo: "./img/oDmitriy.jpg",
-        roles: ["Консультант клуба 'Талант'","Кандидат в мастера спорта","Тренер, опыт обучения 15 лет","Автор книги (2023)"]
+        roles: ["Консультант клуба 'Талант'", "Кандидат в мастера спорта", "Тренер, опыт обучения 15 лет", "Автор книги (2023)"]
       },
       {
         name: "Константин Шмагин",
         photo: "./img/constantine.jpg",
-        roles: ["Кандидат в мастера спорта","Тренер, опыт обучения 7 лет","Шахматный историк","Судья соревнований"]
+        roles: ["Кандидат в мастера спорта", "Тренер, опыт обучения 7 лет", "Шахматный историк", "Судья соревнований"]
       }
     ];
 
@@ -256,5 +291,7 @@
       grid.appendChild(card);
     });
   </script>
+  
 </body>
+
 </html>
